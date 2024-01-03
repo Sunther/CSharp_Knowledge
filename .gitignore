@@ -1,0 +1,30 @@
+#Ignore files build by Visual Studio
+*.obj
+*.pdb
+*.user
+*.aps
+*.pch
+*.vspscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.tlb
+*.tlh
+*.bak
+*.cache
+*.ilk
+*.log
+*.dll
+*.lib
+*.sbr  
+
+
+#ignore VS folders
+bin/
+obj/
+packages/
+.vs/
+Thumbs.db
+
+#Exceptions
