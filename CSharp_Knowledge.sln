@@ -15,11 +15,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HttpClientFactoring", "Erro
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackgroundTasks", "BackgroundService\BackgroundTasks.csproj", "{AB9BA74E-2E0A-4F24-9E11-CC5BC7F3B40D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinimalApi", "MinimalApi\MinimalApi.csproj", "{AC1153DD-CBA5-4090-93B3-737C680A453E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinimalApi", "MinimalApi\MinimalApi.csproj", "{AC1153DD-CBA5-4090-93B3-737C680A453E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaginationEntityFramework", "PaginationEntityFramework\PaginationEntityFramework.csproj", "{197C1676-7B22-4723-8FB8-9CDACD3730E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaginationEntityFramework", "PaginationEntityFramework\PaginationEntityFramework.csproj", "{197C1676-7B22-4723-8FB8-9CDACD3730E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EfficientSql", "EfficientSql\EfficientSql.csproj", "{B8B8D39E-1BAD-4216-B0C6-61B7956C9102}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EfficientSql", "EfficientSql\EfficientSql.csproj", "{B8B8D39E-1BAD-4216-B0C6-61B7956C9102}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GlobalErrorHandling", "GlobalErrorHandling\GlobalErrorHandling.csproj", "{08703458-1761-4A16-8A83-9DB9493B893D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,10 @@ Global
 		{B8B8D39E-1BAD-4216-B0C6-61B7956C9102}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8B8D39E-1BAD-4216-B0C6-61B7956C9102}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8B8D39E-1BAD-4216-B0C6-61B7956C9102}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08703458-1761-4A16-8A83-9DB9493B893D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08703458-1761-4A16-8A83-9DB9493B893D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08703458-1761-4A16-8A83-9DB9493B893D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08703458-1761-4A16-8A83-9DB9493B893D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +73,7 @@ Global
 		{AC1153DD-CBA5-4090-93B3-737C680A453E} = {F28BD605-18FF-43B7-9C3E-D6D9D551442B}
 		{197C1676-7B22-4723-8FB8-9CDACD3730E9} = {F28BD605-18FF-43B7-9C3E-D6D9D551442B}
 		{B8B8D39E-1BAD-4216-B0C6-61B7956C9102} = {F28BD605-18FF-43B7-9C3E-D6D9D551442B}
+		{08703458-1761-4A16-8A83-9DB9493B893D} = {A816FE01-A32F-4514-8B03-6354909106E9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {59383646-5DFE-4BE5-89B0-267D5C63FBD5}
