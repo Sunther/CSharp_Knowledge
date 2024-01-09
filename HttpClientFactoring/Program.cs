@@ -1,25 +1,22 @@
-﻿using HttpClientFactoring.Contracts;
+﻿using HttpClientFactoring;
 using HttpClientFactoring.Implementations;
 using Microsoft.Extensions.DependencyInjection;
 
-internal class Program
+public class Program
 {
-    public void Main(string[] args)
+    public static void Main(string[] args)
     {
-        var sp = ServiceCollection();
+        var serviceProvider = ServiceCollection();
 
-        var service = sp.GetService<IConnection>();
+        var service = serviceProvider.GetService<IConnection>();
     }
 
     ///<summary>
     ///https://www.milanjovanovic.tech/blog/the-right-way-to-use-httpclient-in-dotnet?utm_source=LinkedIn&utm_medium=social&utm_campaign=25.12.2023
     ///</summary>
-    private IServiceProvider ServiceCollection()
+    private static IServiceProvider ServiceCollection()
     {
         var sc = new ServiceCollection();
-
-        /// Infrastructure
-        sc.AddTransient<IConnection, Connection>();
 
         ///HttpClient configuration
         sc.AddHttpClient("github", (serviceProvider, client) =>
@@ -30,6 +27,9 @@ internal class Program
         {
             client.BaseAddress = new Uri("https://api.github.com");
         });
+
+        /// Infrastructure
+        sc.AddTransient<IConnection, Connection>();
 
         return sc.BuildServiceProvider();
     }

@@ -1,6 +1,4 @@
-﻿using HttpClientFactoring.Contracts;
-
-namespace HttpClientFactoring.Implementations
+﻿namespace HttpClientFactoring.Implementations
 {
     public class Connection : IConnection
     {
