@@ -1,52 +1,56 @@
 ﻿using System.Diagnostics;
 using System.Text;
 
-UsingConcat();
-UsingStringBuilder();
-
-void UsingConcat()
+internal class Program
 {
-    var sw = new Stopwatch();
-    var naturalNumbers = Enumerable.Range(1, 1000).ToList();
-    var naturalString = string.Empty;
-
-    sw.Start();
-    foreach (int item in naturalNumbers)
+    private static void Main(string[] args)
     {
-        if (item % 2 == 0)
-        {
-            naturalString += $"{item} is Even";
-        }
-        else
-        {
-            naturalString += $"{item} is Odd";
-        }
+        UsingConcat();
+        UsingStringBuilder();
     }
-    sw.Stop();
-    
-    Console.WriteLine($"{nameof(UsingConcat)} {sw.ElapsedMilliseconds} mseg");
-}
 
-
-void UsingStringBuilder()
-{
-    var sw = new Stopwatch();
-    var naturalNumbers = Enumerable.Range(1, 1000).ToList();
-    var naturalStringBuilder = new StringBuilder();
-
-    sw.Start();
-    foreach (int item in naturalNumbers)
+    private static void UsingConcat()
     {
-        if (item % 2 == 0)
-        {
-            naturalStringBuilder.Append($"{item} is Even");
-        }
-        else
-        {
-            naturalStringBuilder.Append($"{item} is Odd");
-        }
-    }
-    sw.Stop();
+        var sw = new Stopwatch();
+        var naturalNumbers = Enumerable.Range(1, 1000).ToList();
+        var naturalString = string.Empty;
 
-    Console.WriteLine($"{nameof(UsingStringBuilder)} {sw.ElapsedMilliseconds} mseg");
+        sw.Start();
+        foreach (int item in naturalNumbers)
+        {
+            if (item % 2 == 0)
+            {
+                naturalString += $"{item} is Even";
+            }
+            else
+            {
+                naturalString += $"{item} is Odd";
+            }
+        }
+        sw.Stop();
+
+        Console.WriteLine($"{nameof(UsingConcat)} {sw.ElapsedMilliseconds} mseg");
+    }
+    private static void UsingStringBuilder()
+    {
+        var sw = new Stopwatch();
+        var naturalNumbers = Enumerable.Range(1, 1000).ToList();
+        var naturalStringBuilder = new StringBuilder();
+
+        sw.Start();
+        foreach (int item in naturalNumbers)
+        {
+            if (item % 2 == 0)
+            {
+                naturalStringBuilder.Append($"{item} is Even");
+            }
+            else
+            {
+                naturalStringBuilder.Append($"{item} is Odd");
+            }
+        }
+        sw.Stop();
+
+        Console.WriteLine($"{nameof(UsingStringBuilder)} {sw.ElapsedMilliseconds} mseg");
+    }
 }
