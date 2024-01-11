@@ -2,33 +2,18 @@
 {
     public class Connection : IConnection
     {
-        private readonly IHttpClientFactory _factory;
+        private readonly HttpClient _client;
 
-        public Connection(IHttpClientFactory factory)
+        public Connection(HttpClient client)
         {
-            _factory = factory;
+            _client = client;
         }
 
         public async Task<HttpResponseMessage> GetUserNewAsync()
         {
             HttpResponseMessage response;
 
-            using (var client = _factory.CreateClient())
-            {
-                response = await client.GetAsync(new Uri("https://api.github.com"));
-            }
-
-            return response;
-        }
-
-        public async Task<HttpResponseMessage> GetUserGitHubAsync()
-        {
-            HttpResponseMessage response;
-
-            using (var client = _factory.CreateClient("github"))
-            {
-                response = await client.GetAsync(new Uri("https://api.github.com"));
-            }
+            response = await _client.GetAsync(new Uri("https://api.github.com"));
 
             return response;
         }

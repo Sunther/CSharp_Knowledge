@@ -4,11 +4,12 @@ using Microsoft.Extensions.DependencyInjection;
 
 public class Program
 {
-    public static void Main(string[] args)
+    public static async Task Main(string[] args)
     {
         var serviceProvider = ServiceCollection();
 
-        var service = serviceProvider.GetService<IConnection>();
+        _ = await serviceProvider.GetService<IConnection>().GetUserNewAsync();
+        _ = await serviceProvider.GetService<IExampleFactory>().GetUserGitHubAsync();
     }
 
     ///<summary>
@@ -23,13 +24,24 @@ public class Program
         {
             client.BaseAddress = new Uri("https://api.github.com");
         });
+        //Registered as a Transient
         sc.AddHttpClient<IConnection>((serviceProvider, client) =>
         {
             client.BaseAddress = new Uri("https://api.github.com");
-        });
+        })
+        //As Singleton management
+        .ConfigurePrimaryHttpMessageHandler(() =>
+        {
+            return new SocketsHttpHandler
+            {
+                PooledConnectionLifetime = TimeSpan.FromSeconds(5)
+            };
+        })
+        .SetHandlerLifetime(Timeout.InfiniteTimeSpan);
 
         /// Infrastructure
         sc.AddTransient<IConnection, Connection>();
+        sc.AddTransient<IExampleFactory, ExampleFactory>();
 
         return sc.BuildServiceProvider();
     }
