@@ -10,16 +10,47 @@ internal class Program
                 .UseWindowsService()
                 .ConfigureServices((hostContext, services) =>
                 {
-                    _ = ServiceProvider(services);
+                    if (false)
+                    {
+                        _ = ServiceProviderDotNet(services);
+                    }
+                    else
+                    {
+                        //_ = ServiceProviderDotNet8(services);
+                        _ = ServiceProviderDotNet8LifeCycle(services);
+                    }
                 })
                 .Build()
                 .RunAsync();
     }
 
-    private static IServiceProvider ServiceProvider(IServiceCollection sc)
+    private static IServiceProvider ServiceProviderDotNet(IServiceCollection sc)
     {
-        /// Infrastructure
         sc.AddHostedService<PeriodicBackgroundTask>();
+
+        return sc.BuildServiceProvider();
+    }
+    private static IServiceProvider ServiceProviderDotNet8(IServiceCollection sc)
+    {
+        sc.Configure<HostOptions>(x =>
+        {
+            x.ServicesStartConcurrently = true;
+            x.ServicesStopConcurrently = false;
+        });
+
+        sc.AddHostedService<PeriodicHostedService>();
+
+        return sc.BuildServiceProvider();
+    }
+    private static IServiceProvider ServiceProviderDotNet8LifeCycle(IServiceCollection sc)
+    {
+        sc.Configure<HostOptions>(x =>
+        {
+            x.ServicesStartConcurrently = true;
+            x.ServicesStopConcurrently = false;
+        });
+
+        sc.AddHostedService<PeriodicHostedLifecycleService>();
 
         return sc.BuildServiceProvider();
     }

@@ -1,10 +1,10 @@
-﻿namespace BackgroundTasks.Implementations
+﻿namespace BackgroundTasks.DTOS
 {
     public class Periodic
     {
         public Periodic()
         {
-            
+
         }
     }
 }
