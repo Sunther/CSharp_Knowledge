@@ -23,7 +23,6 @@ public class Program
             // Decorator
             .AddTransient<IAddition, Addition>()
             .AddDecorator<IAddition, LogDecorator>()
-
             // Build
             .BuildServiceProvider();
     }

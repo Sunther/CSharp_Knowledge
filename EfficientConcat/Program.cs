@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.ObjectPool;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.ObjectPool;
 using System.Diagnostics;
 using System.Text;
 
@@ -10,9 +11,19 @@ namespace EfficientConcat
 
         public static void Main()
         {
+            var services = new ServiceCollection();
+            services.AddSingleton<ObjectPoolProvider, DefaultObjectPoolProvider>();
+            services.AddSingleton<ObjectPool<StringBuilder>>(serviceProvider =>
+            {
+                var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
+                var policy = new StringBuilderPooledObjectPolicy();
+                return provider.Create(policy);
+            });
+            var sp = services.BuildServiceProvider();
+
             UsingConcat();
             UsingStringBuilder();
-            UsingObjectPool();
+            UsingObjectPool(sp);
         }
 
         private static void UsingConcat()
@@ -63,12 +74,13 @@ namespace EfficientConcat
         ///Expensive to allocate/initialize.
         ///Represent a limited resource.
         ///Used predictably and frequently.
+        ///https://learn.microsoft.com/en-us/aspnet/core/performance/objectpool?view=aspnetcore-3.1
         /// </summary>
-        private static void UsingObjectPool()
+        private static void UsingObjectPool(IServiceProvider sp)
         {
             var sw = new Stopwatch();
+            ObjectPool<StringBuilder> stringBuilderPool = sp.GetRequiredService<ObjectPool<StringBuilder>>();
             sw.Start();
-            ObjectPool<StringBuilder> stringBuilderPool = new DefaultObjectPoolProvider().CreateStringBuilderPool();
             var stringBuilder = stringBuilderPool.Get();
 
             foreach (int item in _naturalNumbers)
@@ -82,6 +94,7 @@ namespace EfficientConcat
                     stringBuilder.Append($"{item} is Odd");
                 }
             }
+            stringBuilderPool.Return(stringBuilder);
             sw.Stop();
 
             Console.WriteLine($"{nameof(UsingObjectPool)} {sw.ElapsedMilliseconds} mseg");

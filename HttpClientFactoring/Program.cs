@@ -24,20 +24,20 @@ public class Program
         {
             client.BaseAddress = new Uri("https://api.github.com");
         });
-        //Registered as a Transient
+        ///Registered as a Transient
         sc.AddHttpClient<IConnection>((serviceProvider, client) =>
         {
             client.BaseAddress = new Uri("https://api.github.com");
         })
-        //As Singleton management
-        .ConfigurePrimaryHttpMessageHandler(() =>
-        {
-            return new SocketsHttpHandler
+            //As Singleton management
+            .ConfigurePrimaryHttpMessageHandler(() =>
             {
-                PooledConnectionLifetime = TimeSpan.FromSeconds(5)
-            };
-        })
-        .SetHandlerLifetime(Timeout.InfiniteTimeSpan);
+                return new SocketsHttpHandler
+                {
+                    PooledConnectionLifetime = TimeSpan.FromSeconds(5)
+                };
+            })
+            .SetHandlerLifetime(Timeout.InfiniteTimeSpan);
 
         /// Infrastructure
         sc.AddTransient<IConnection, Connection>();
