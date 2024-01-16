@@ -39,7 +39,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Result", "Result\Result.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthExample", "AuthExample\AuthExample.csproj", "{3D5B3ED5-8671-4AAA-B25F-52A9215E3F6B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EfficientMapping", "EfficientMapping\EfficientMapping.csproj", "{A0D71ECB-1711-4BA3-8DBA-9DB740F9B883}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EfficientMapping", "EfficientMapping\EfficientMapping.csproj", "{A0D71ECB-1711-4BA3-8DBA-9DB740F9B883}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EfficientSearchValue", "EfficientSearchValue\EfficientSearchValue.csproj", "{02004BA5-F65E-49AA-81C7-4CC9356C2C46}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -111,6 +113,10 @@ Global
 		{A0D71ECB-1711-4BA3-8DBA-9DB740F9B883}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0D71ECB-1711-4BA3-8DBA-9DB740F9B883}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0D71ECB-1711-4BA3-8DBA-9DB740F9B883}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02004BA5-F65E-49AA-81C7-4CC9356C2C46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02004BA5-F65E-49AA-81C7-4CC9356C2C46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02004BA5-F65E-49AA-81C7-4CC9356C2C46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02004BA5-F65E-49AA-81C7-4CC9356C2C46}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -132,6 +138,7 @@ Global
 		{7BC78C1D-9502-4997-BBF9-AF84314AB172} = {B670F2DF-9DF1-45A7-89C5-EF83AF37C577}
 		{3D5B3ED5-8671-4AAA-B25F-52A9215E3F6B} = {A816FE01-A32F-4514-8B03-6354909106E9}
 		{A0D71ECB-1711-4BA3-8DBA-9DB740F9B883} = {F28BD605-18FF-43B7-9C3E-D6D9D551442B}
+		{02004BA5-F65E-49AA-81C7-4CC9356C2C46} = {A816FE01-A32F-4514-8B03-6354909106E9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {59383646-5DFE-4BE5-89B0-267D5C63FBD5}

@@ -9,8 +9,8 @@ public class Program
 {
     /// <summary>
     /// https://github.com/riok/mapperly?tab=readme-ov-file
+    /// Mapperly
     /// </summary>
-    /// <param name="args"></param>
     public static void Main()
     {
         var stopwatch = new Stopwatch();
