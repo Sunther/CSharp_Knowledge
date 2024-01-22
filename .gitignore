@@ -18,6 +18,8 @@
 *.dll
 *.lib
 *.sbr  
+DataSource-app.db*
+Thumbs.db
 
 
 #ignore VS folders
@@ -25,6 +27,6 @@ bin/
 obj/
 packages/
 .vs/
-Thumbs.db
+AuthExample/Migrations
 
 #Exceptions
