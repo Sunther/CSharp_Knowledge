@@ -1,51 +1,44 @@
 ﻿using BenchmarkDotNet.Running;
-using MultipleOrderBy;
-using MultipleOrderBy.DTOs;
 using System.Diagnostics;
 
-public class Program
+namespace MultipleOrderBy
 {
-    static Wrapper[] Arr = new Wrapper[]
+    public static class Program
     {
-          new() { Name = 1, Price = 2 },
-          new() { Name = 0, Price = 1 },
-          new() { Name = 2, Price = 1 },
-          new() { Name = 2, Price = 0 },
-          new() { Name = 0, Price = 2 },
-          new() { Name = 0, Price = 3 },
-    };
+        private static readonly BenchmarkOrderBy _benchmarkOrderBy;
 
-    public static void Main()
-    {
-        BenchmarkRunner.Run<BenchmarkOrderBy>();
+        static Program()
+        {
+            _benchmarkOrderBy = new BenchmarkOrderBy();
+        }
 
-        WrongWay_MultipleOrderBy();
-        RightWay_MultipleOrderBy();
-    }
+        public static void Main()
+        {
+            //OrderBy();
+            //ThenBy();
 
-    public static void WrongWay_MultipleOrderBy()
-    {
-        var sw = new Stopwatch();
-        var init = DateTime.Now.Ticks;
+            BenchmarkRunner.Run<BenchmarkOrderBy>();
+        }
 
-        sw.Start();
-        var result = Arr.OrderBy(item => item.Name)
-                        .OrderBy(item => item.Price);
-        sw.Stop();
+        private static void OrderBy()
+        {
 
-        Console.WriteLine($"Time with OrderBy: {DateTime.Now.Ticks - init} ticks");
-    }
+            var sw = new Stopwatch();
+            sw.Start();
+            //_benchmarkOrderBy.MultipleOrderBy(_benchmarkOrderBy.GetEnumerable());
+            sw.Stop();
 
-    public static void RightWay_MultipleOrderBy()
-    {
-        var sw = new Stopwatch();
-        var init = DateTime.Now.Ticks;
+            Console.WriteLine($"Time with OrderBy:  {sw.ElapsedTicks} ticks");
+        }
 
-        sw.Start();
-        var result = Arr.OrderBy(item => item.Name)
-                        .ThenBy(item => item.Price);
-        sw.Stop();
+        private static void ThenBy()
+        {
+            var sw = new Stopwatch();
+            sw.Start();
+            //_benchmarkOrderBy.OrderBy_ThenBy(_benchmarkOrderBy.GetEnumerable());
+            sw.Stop();
 
-        Console.WriteLine($"Time with ThenBy: {DateTime.Now.Ticks - init} ticks");
+            Console.WriteLine($"Time with ThenBy:   {sw.ElapsedTicks} ticks");
+        }
     }
 }
