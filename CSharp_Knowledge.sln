@@ -43,7 +43,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EfficientSearchValue", "Eff
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RetryWithPolly", "RetryWithPolly\RetryWithPolly.csproj", "{8E99D9F1-F85E-4569-A013-FA2CCC2ED23A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartString", "SmartString\SmartString.csproj", "{DD8030CE-C861-4D57-9216-61E017D2684E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartString", "SmartString\SmartString.csproj", "{DD8030CE-C861-4D57-9216-61E017D2684E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EfficientLoop", "EfficientLoop\EfficientLoop.csproj", "{6758D692-BE18-4374-9D8A-3C86FA3D2350}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -123,6 +125,10 @@ Global
 		{DD8030CE-C861-4D57-9216-61E017D2684E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD8030CE-C861-4D57-9216-61E017D2684E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD8030CE-C861-4D57-9216-61E017D2684E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6758D692-BE18-4374-9D8A-3C86FA3D2350}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6758D692-BE18-4374-9D8A-3C86FA3D2350}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6758D692-BE18-4374-9D8A-3C86FA3D2350}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6758D692-BE18-4374-9D8A-3C86FA3D2350}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -146,6 +152,7 @@ Global
 		{02004BA5-F65E-49AA-81C7-4CC9356C2C46} = {A816FE01-A32F-4514-8B03-6354909106E9}
 		{8E99D9F1-F85E-4569-A013-FA2CCC2ED23A} = {F28BD605-18FF-43B7-9C3E-D6D9D551442B}
 		{DD8030CE-C861-4D57-9216-61E017D2684E} = {A816FE01-A32F-4514-8B03-6354909106E9}
+		{6758D692-BE18-4374-9D8A-3C86FA3D2350} = {F28BD605-18FF-43B7-9C3E-D6D9D551442B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {59383646-5DFE-4BE5-89B0-267D5C63FBD5}

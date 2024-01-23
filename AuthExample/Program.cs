@@ -1,9 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System.Runtime.Intrinsics.X86;
-using System;
 using System.Security.Claims;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 internal class Program
 {
