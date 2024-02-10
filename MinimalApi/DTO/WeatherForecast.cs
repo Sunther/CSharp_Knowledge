@@ -1,4 +1,4 @@
-namespace MinimalApi.DTO
+namespace MinimalApi_EfficientSendFile.DTO
 {
     public class WeatherForecast
     {

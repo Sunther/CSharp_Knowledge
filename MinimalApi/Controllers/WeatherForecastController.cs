@@ -1,35 +1,72 @@
-using Microsoft.AspNetCore.Mvc;
-using MinimalApi.DTO;
+using Swashbuckle.AspNetCore.Annotations;
+using System.Net.Http.Headers;
+using Weather.NET;
+using Weather.NET.Enums;
 
-namespace MinimalApi.Controllers
+namespace MinimalApi_EfficientSendFile.Controllers
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public static class WeatherForecastController
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
+        private const string Category = "Weather";
 
-        private readonly ILogger<WeatherForecastController> _logger;
-
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        /// <summary>
+        /// Populates the Controller with methods to consult Weather work related
+        /// </summary>
+        public static void AddWeatherController(this WebApplication app)
         {
-            _logger = logger;
+            app.MapGet($"/{Category}/Get", async () =>
+                {
+                    try
+                    {
+                        var client = new WeatherClient("Your API key");
+                        var forecasts = await client.GetForecastAsync("London", 8, Measurement.Metric, Language.Spanish);
+
+                        return Results.Ok(forecasts);
+                    }
+                    catch (Exception ex)
+                    {
+                        return Results.BadRequest(ex.ToString());
+                    }
+                })
+            .WithTags(Category)
+            .WithMetadata(new SwaggerOperationAttribute("Summary", "Description"));
+
+            app.MapPost($"/{Category}/Post", async (string filePath) =>
+                {
+                    var file = new FileInfo(filePath);
+                    int bufferSize = 2048;
+                    using (var fileStream = new FileStream(file.FullName, FileMode.Open, FileAccess.Read, FileShare.Read, bufferSize, FileOptions.Asynchronous))
+                    {
+                        using (var streamContent = new StreamContent(fileStream, bufferSize))
+                        {
+                            streamContent.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
+                            var request = new HttpRequestMessage(HttpMethod.Post, "Endpoint")
+                            {
+                                Content = GetHttpContent(streamContent, file)
+                            };
+
+                            _ = await SendAsync(request);
+                        }
+                    }
+                })
+            .WithTags(Category)
+            .WithMetadata(new SwaggerOperationAttribute("Category", "Description"));
+
         }
 
-        [HttpGet]
-        public WeatherForecast Get()
+        private async static Task<HttpResponse> SendAsync(HttpRequestMessage request)
         {
-            var response = Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            });
+            throw new NotImplementedException();
+        }
 
-            return response.First();
+        private static HttpContent GetHttpContent(StreamContent streamContent, FileInfo file)
+        {
+            return new MultipartFormDataContent
+                {
+                    { new StringContent(file.Name), nameof(file.Name) },
+                    { new StringContent(DateTime.Now.ToString()), "UploadTime" },
+                    { streamContent, nameof(File), file.Name }
+                };
         }
     }
 }
