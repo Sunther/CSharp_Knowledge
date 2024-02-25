@@ -1,6 +1,5 @@
-﻿using EfficientMapping.DTOs;
-using EfficientMapping.Entities;
-using Riok.Mapperly.Abstractions;
+﻿using EfficientMapping.Entities;
+using EfficientMapping.Mappers;
 using System.Diagnostics;
 
 namespace EfficientMapping;
@@ -24,34 +23,11 @@ public class Program
             Tags = new List<Tag>() { new("1") }
         };
 
-        var personDto = new PersonMapper().PersonToDto(person);
+        var personDto = PersonMapper.PersonToDto(person);
 
         stopwatch.Stop();
         Console.WriteLine(person);
         Console.WriteLine(personDto);
         Console.WriteLine($"Time {stopwatch.ElapsedMilliseconds} mseg");
     }
-}
-
-[Mapper(EnumMappingStrategy = EnumMappingStrategy.ByName, EnumMappingIgnoreCase = true)]
-[UseStaticMapper(typeof(TagMapper))]
-public partial class PersonMapper
-{
-    public PersonDto PersonToDto(Person person)
-    {
-        // custom before map code...
-        var dto = ToDto(person);
-        // custom after map code...
-        return dto;
-    }
-
-    [MapProperty(nameof(Person.Id), nameof(PersonDto.PersonId))]
-    [MapProperty(nameof(Person.Dis), nameof(PersonDto.Isd))]
-    private partial PersonDto ToDto(Person person);
-}
-
-public static class TagMapper
-{
-    [MapProperty(nameof(Tag.Name), nameof(TagDto.tag))]
-    public static TagDto MapTag(Tag tag) => new($"Tag:{tag.Name}");
 }

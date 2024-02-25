@@ -1,3 +1,4 @@
+using Asp.Versioning;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Net.Http.Headers;
 using Weather.NET;
@@ -12,45 +13,52 @@ namespace MinimalApi_EfficientSendFile.Controllers
         /// <summary>
         /// Populates the Controller with methods to consult Weather work related
         /// </summary>
-        public static void AddWeatherController(this WebApplication app)
+        public static void AddWeatherMinimalController(this WebApplication app)
         {
-            app.MapGet($"/{Category}/Get", async () =>
-                {
-                    try
-                    {
-                        var client = new WeatherClient("Your API key");
-                        var forecasts = await client.GetForecastAsync("London", 8, Measurement.Metric, Language.Spanish);
+            var apiVersionSet = app.NewApiVersionSet()
+                .HasApiVersion(new ApiVersion(1))
+                //.HasDeprecatedApiVersion(new ApiVersion(0))
+                .Build();
 
-                        return Results.Ok(forecasts);
-                    }
-                    catch (Exception ex)
-                    {
-                        return Results.BadRequest(ex.ToString());
-                    }
-                })
-            .WithTags(Category)
+            var apiGroup = app.MapGroup($"api/v{{apiVersion:apiVersion}}/{Category}")
+                            .WithApiVersionSet(apiVersionSet)
+                            .WithTags(Category);
+
+            apiGroup.MapGet($"Get", async () =>
+            {
+                try
+                {
+                    var client = new WeatherClient("Your API key");
+                    var forecasts = await client.GetForecastAsync("London", 8, Measurement.Metric, Language.Spanish);
+
+                    return Results.Ok(forecasts);
+                }
+                catch (Exception ex)
+                {
+                    return Results.BadRequest(ex.ToString());
+                }
+            })
             .WithMetadata(new SwaggerOperationAttribute("Summary", "Description"));
 
-            app.MapPost($"/{Category}/Post", async (string filePath) =>
+            apiGroup.MapPost($"/Post", async (string filePath) =>
+            {
+                var file = new FileInfo(filePath);
+                int bufferSize = 2048;
+                using (var fileStream = new FileStream(file.FullName, FileMode.Open, FileAccess.Read, FileShare.Read, bufferSize, FileOptions.Asynchronous))
                 {
-                    var file = new FileInfo(filePath);
-                    int bufferSize = 2048;
-                    using (var fileStream = new FileStream(file.FullName, FileMode.Open, FileAccess.Read, FileShare.Read, bufferSize, FileOptions.Asynchronous))
+                    using (var streamContent = new StreamContent(fileStream, bufferSize))
                     {
-                        using (var streamContent = new StreamContent(fileStream, bufferSize))
+                        streamContent.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
+                        var request = new HttpRequestMessage(HttpMethod.Post, "Endpoint")
                         {
-                            streamContent.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
-                            var request = new HttpRequestMessage(HttpMethod.Post, "Endpoint")
-                            {
-                                Content = GetHttpContent(streamContent, file)
-                            };
+                            Content = GetHttpContent(streamContent, file)
+                        };
 
-                            _ = await SendAsync(request);
-                        }
+                        _ = await SendAsync(request);
                     }
-                })
-            .WithTags(Category)
-            .WithMetadata(new SwaggerOperationAttribute("Category", "Description"));
+                }
+            })
+            .WithMetadata(new SwaggerOperationAttribute("Summary", "Description"));
 
         }
 
