@@ -1,8 +1,10 @@
+using API.Config;
+using API.Controllers;
+using API.Enums;
+using API.Extensions;
 using Asp.Versioning;
-using Asp.Versioning.ApiExplorer;
-using MinimalApi_EfficientSendFile.Controllers;
-using MinimalApi_EfficientSendFile.Helpers;
-using MinimalApi_EfficientSendFile.NewFolder;
+
+namespace API;
 
 public static class Program
 {
@@ -11,6 +13,24 @@ public static class Program
         var builder = WebApplication.CreateBuilder(args);
 
         builder.Services.Register();
+        builder.Services.AddOutputCache(c =>
+        {
+            c.AddBasePolicy(build =>
+            {
+                build.Expire(TimeSpan.FromSeconds(3));
+            });
+
+            c.AddPolicyEnum(CachePolicy.Expire20, build =>
+            {
+                build.Expire(TimeSpan.FromSeconds(20));
+            });
+        });
+        //builder.Services.AddStackExchangeRedisOutputCache(c =>
+        //{
+        //    c.Configuration = "localhost:6379";
+        //    c.InstanceName = "SampleInstance";
+        //});
+
         // Add services to the container.
         builder.Services.AddControllers();
 
@@ -36,6 +56,7 @@ public static class Program
         });
 
         var app = builder.Build();
+        app.UseOutputCache();
 
         app.AddWeatherMinimalController();
 
@@ -43,7 +64,7 @@ public static class Program
         app.UseSwaggerUI(opt =>
         {
             var descriptions = app.DescribeApiVersions();
-            foreach(var  description in descriptions)
+            foreach (var description in descriptions)
             {
                 var url = $"/swagger/{description.GroupName}/swagger.json";
                 var name = description.GroupName.ToUpperInvariant();

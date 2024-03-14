@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EfficientConcat", "Efficien
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackgroundTasks", "BackgroundService\BackgroundTasks.csproj", "{AB9BA74E-2E0A-4F24-9E11-CC5BC7F3B40D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinimalApi_EfficientSendFile", "MinimalApi\MinimalApi_EfficientSendFile.csproj", "{AC1153DD-CBA5-4090-93B3-737C680A453E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "MinimalApi\API.csproj", "{AC1153DD-CBA5-4090-93B3-737C680A453E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaginationEntityFramework", "PaginationEntityFramework\PaginationEntityFramework.csproj", "{197C1676-7B22-4723-8FB8-9CDACD3730E9}"
 EndProject
