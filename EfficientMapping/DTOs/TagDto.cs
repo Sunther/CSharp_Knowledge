@@ -1,3 +1,3 @@
 ﻿namespace EfficientMapping.DTOs;
 
-public record TagDto(string Tag);
+public record TagDto(string Tag = "");

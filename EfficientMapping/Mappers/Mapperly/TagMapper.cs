@@ -2,7 +2,7 @@
 using EfficientMapping.Entities;
 using Riok.Mapperly.Abstractions;
 
-namespace EfficientMapping.Mappers;
+namespace EfficientMapping.Mappers.Mapperly;
 
 [Mapper]
 public static partial class TagMapper

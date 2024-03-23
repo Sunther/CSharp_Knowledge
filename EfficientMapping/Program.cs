@@ -1,6 +1,5 @@
-﻿using EfficientMapping.Entities;
-using EfficientMapping.Mappers;
-using System.Diagnostics;
+﻿using BenchmarkDotNet.Running;
+using EfficientMapping.Benchmarks;
 
 namespace EfficientMapping;
 
@@ -12,22 +11,6 @@ public class Program
     /// </summary>
     public static void Main()
     {
-        var stopwatch = new Stopwatch();
-        stopwatch.Start();
-        Person person = new()
-        {
-            Id = 1,
-            Dis = 2,
-            MartialStatus = MartialStatus.Married,
-            Name = "Test",
-            Tags = new List<Tag>() { new("1") }
-        };
-
-        var personDto = PersonMapper.PersonToDto(person);
-
-        stopwatch.Stop();
-        Console.WriteLine(person);
-        Console.WriteLine(personDto);
-        Console.WriteLine($"Time {stopwatch.ElapsedMilliseconds} mseg");
+        BenchmarkRunner.Run<MappingBenchmark>();
     }
 }
