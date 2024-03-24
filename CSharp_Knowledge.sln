@@ -11,9 +11,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".NET", ".NET", "{F28BD605-1
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EfficientConcat", "EfficientConcat\EfficientConcat.csproj", "{C9A4D657-08E7-4AF4-9138-7FD54F0F3F82}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackgroundTasks", "BackgroundService\BackgroundTasks.csproj", "{AB9BA74E-2E0A-4F24-9E11-CC5BC7F3B40D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackgroundTasks", "BackgroundTasks\BackgroundTasks.csproj", "{AB9BA74E-2E0A-4F24-9E11-CC5BC7F3B40D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "MinimalApi\API.csproj", "{AC1153DD-CBA5-4090-93B3-737C680A453E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "API\API.csproj", "{AC1153DD-CBA5-4090-93B3-737C680A453E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaginationEntityFramework", "PaginationEntityFramework\PaginationEntityFramework.csproj", "{197C1676-7B22-4723-8FB8-9CDACD3730E9}"
 EndProject
@@ -49,7 +49,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EfficientReading", "Efficie
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Newtonsoft", "Newtonsoft\Newtonsoft.csproj", "{21411AED-B4AA-4B1E-9368-6C62359762C0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoreLinqQuering", "MoreLinq\MoreLinqQuering.csproj", "{49B2062D-D9B5-47F3-AF40-475196B4E953}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoreLinqQuering", "MoreLinqQuering\MoreLinqQuering.csproj", "{49B2062D-D9B5-47F3-AF40-475196B4E953}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LINQ", "LINQ", "{2B98597B-461E-462E-B658-BD671A4B75C3}"
 EndProject
@@ -61,7 +61,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XUnitUsage", "XUnitUsage\XU
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CachingSystem", "CachingSystem\CachingSystem.csproj", "{8145EA6C-BDD7-4BE6-B3E2-8B616E699F17}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainEvents_MediatR", "MediatRDemo\DomainEvents_MediatR.csproj", "{91759A0D-335A-4027-92B1-49BE60B060B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainEvents_MediatR", "DomainEvents_MediatR\DomainEvents_MediatR.csproj", "{91759A0D-335A-4027-92B1-49BE60B060B2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Communication", "Communication", "{BE738789-B7E5-4978-A7DF-9B0897D5D20A}"
 EndProject
