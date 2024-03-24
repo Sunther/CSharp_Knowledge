@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace FluentValidationDemo
 {
@@ -23,7 +22,7 @@ namespace FluentValidationDemo
             };
 
             var res = await _PersonValidator.ValidateAsync(p);
-            if(!res.IsValid)
+            if (!res.IsValid)
             {
                 Console.WriteLine($"There are errors in your dungeon.{Environment.NewLine}{JsonSerializer.Serialize(res.Errors)}");
             }

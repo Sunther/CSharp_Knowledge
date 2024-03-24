@@ -1,7 +1,10 @@
 ﻿using DomainEvents_MediatR.Application;
+using DomainEvents_MediatR.Application.Behaviours;
 using DomainEvents_MediatR.Application.Handlers;
 using DomainEvents_MediatR.Domain;
 using DomainEvents_MediatR.Infrastructure;
+using FluentValidation;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 
@@ -30,6 +33,9 @@ internal static class Program
         sc.AddTransient<Service>();
         sc.AddTransient<ILibrary, Library>();
         sc.AddSingleton<IDataAccess, Repository>();
+
+        sc.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehaviour<,>));
+        sc.AddValidatorsFromAssembly(typeof(Program).Assembly);
 
         //Register all MediatR related
         sc.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetPersonListHandler).Assembly));

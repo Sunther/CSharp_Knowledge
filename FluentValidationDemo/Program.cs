@@ -7,7 +7,7 @@ public class Program
     /// <summary>
     /// DOCU: https://docs.fluentvalidation.net/en/latest/aspnet.html
     /// </summary>
-    public static void Main(string[] args)
+    public static void Main()
     {
         var serviceProvider = ConfigureServices();
         serviceProvider.GetRequiredService<IPeopleRepo>().DoSomething();
