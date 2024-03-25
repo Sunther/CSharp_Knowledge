@@ -14,6 +14,9 @@ public class Program
 
     ///<summary>
     ///https://www.milanjovanovic.tech/blog/the-right-way-to-use-httpclient-in-dotnet?utm_source=LinkedIn&utm_medium=social&utm_campaign=25.12.2023
+    ///
+    /// NSwag
+    /// https://elanderson.net/2019/11/use-http-client-factory-with-nswag-generated-classes-in-asp-net-core-3/
     ///</summary>
     private static IServiceProvider ServiceCollection()
     {
